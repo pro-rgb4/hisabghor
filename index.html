@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d1f12" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>হিসাবঘর</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+      html { height: 100%; overscroll-behavior: none; }
+      body {
+        font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+        background: #080f0a;
+        height: 100%;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root { height: 100%; }
+
+      /* ── Premium Splash ──────────────────────────────── */
+      #splash {
+        position: fixed; inset: 0;
+        background: radial-gradient(ellipse at 50% 30%, #0d2818 0%, #080f0a 70%);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 20px; z-index: 9999;
+        transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+      }
+      #splash .logo-wrap {
+        position: relative;
+        width: 88px; height: 88px;
+        display: flex; align-items: center; justify-content: center;
+      }
+      #splash .logo-icon { font-size: 46px; animation: logoFloat 3s ease-in-out infinite; }
+      #splash .logo-ring {
+        position: absolute; inset: 0;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        border-top-color: #22c55e;
+        border-right-color: #16a34a44;
+        animation: sp 1.2s cubic-bezier(0.4,0,0.6,1) infinite;
+      }
+      #splash .logo-ring2 {
+        position: absolute; inset: 6px;
+        border-radius: 50%;
+        border: 1px solid transparent;
+        border-top-color: #4ade8066;
+        animation: sp 2s cubic-bezier(0.4,0,0.6,1) infinite reverse;
+      }
+      #splash .app-name {
+        color: #e2faf0;
+        font-size: 22px; font-weight: 800;
+        letter-spacing: 0.5px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-shadow: 0 0 30px #22c55e44;
+      }
+      #splash p {
+        color: #4ade8099;
+        font-size: 13px;
+        font-family: 'Hind Siliguri', sans-serif;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes sp { to { transform: rotate(360deg); } }
+      @keyframes logoFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+      }
+
+      /* ── Global Scrollbar ────────────────────────────── */
+      ::-webkit-scrollbar { width: 3px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #22c55e33; border-radius: 10px; }
+
+      /* ── Safe Area Support ───────────────────────────── */
+      .safe-top    { padding-top: env(safe-area-inset-top, 0px); }
+      .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+    </style>
+  </head>
+  <body>
+    <div id="splash">
+      <div class="logo-wrap">
+        <span class="logo-icon">🏪</span>
+        <div class="logo-ring"></div>
+        <div class="logo-ring2"></div>
+      </div>
+      <div class="app-name">হিসাবঘর</div>
+      <p>লোড হচ্ছে...</p>
+    </div>
+    <div id="root"></div>
+    <script>
+      window.__hideSplash = function() {
+        var s = document.getElementById('splash');
+        if (s) {
+          s.style.opacity = '0';
+          setTimeout(function(){ s.style.display = 'none'; }, 500);
+        }
+      };
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
